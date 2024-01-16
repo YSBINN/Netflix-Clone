@@ -1,12 +1,10 @@
-import tw from "twin.macro";
+import Nav from "./components/Nav";
 function App() {
   return (
-    <div className="App">
-      <Title>netflix project Initial settings</Title>
-    </div>
+    <>
+      <Nav />
+    </>
   );
 }
 
 export default App;
-
-const Title = tw.h1`text-2xl font-bold underline text-center bg-white `;
