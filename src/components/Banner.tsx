@@ -3,10 +3,12 @@ import axios from "../api/baseApi";
 import requests from "../api/requests";
 import tw from "twin.macro";
 import { MovieDetails } from "../../types/movies";
+import styled from "styled-components";
 
 export default function Banner() {
   const [movie, setMovie] = useState<MovieDetails>();
   const [isClicked, setIsClicked] = useState<boolean>(false);
+  const bannerBackUrl = `https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`;
 
   useEffect(() => {
     fetchDate();
@@ -35,11 +37,7 @@ export default function Banner() {
 
   if (!isClicked) {
     return (
-      <BannerHeader>
-        <BannerImg
-          src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
-          alt={movie.title || movie.original_title}
-        />
+      <BannerHeader $backDropPath={bannerBackUrl}>
         <BannerContents>
           <BannerTitle>{movie.title || movie.original_title}</BannerTitle>
           <BannerButtons>
@@ -71,24 +69,28 @@ export default function Banner() {
 }
 
 ////Banner styles///////
-const BannerHeader = tw.header`relative`;
-
-const BannerImg = tw.img`
-object-cover 
-h-[448px]
-w-full`;
+const BannerHeader = styled.header<{ $backDropPath: string }>`
+  background-image: url(${props => props.$backDropPath});
+  ${tw`
+  object-cover 
+  h-[448px]
+  w-full
+  bg-cover
+  bg-center
+  bg-top`}
+`;
 
 const BannerContents = tw.div`
 ml-[40px]
 pt-[140px]
 h-[190px]
-absolute top-0 left-0`;
+`;
 
 const BannerTitle = tw.h1`
 text-5xl
 font-extrabold
 pb-2
-text-gray-600`;
+`;
 
 const BannerButtons = tw.div`
 flex
@@ -109,22 +111,23 @@ p-[0.4rem 1.8rem 0.4rem 1rem]
 mr-4
 hover:(text-white bg-black transition-all delay-200)`;
 
-const BannerInfoButton = tw(BannerPlayButton)`bg-[rgba(109,109,110,0.7)] 
+const BannerInfoButton = tw(BannerPlayButton)`
+bg-[rgba(109,109,110,0.7)] 
 text-white
 hover:(bg-[rgb(74,74,84)] text-black)`;
 
 const BannerDesc = tw.h1`
 w-[45rem]
 mt-[15px]
-text-gray-600
 leading-tight
 font-medium
 text-base
 max-w-[400px]
 h-[80px]`;
+
 const BannerFadeBotton = tw.div`
-h-[7.4rem]
-bg-gradient-to-t from-transparent via-[rgba(37,37,37,0.61)] to-[#111]`;
+h-[20rem]
+bg-gradient-to-b from-transparent via-[rgba(37,37,37,0.61)] to-[#111]`;
 
 ////Banner Detail styles///////
 

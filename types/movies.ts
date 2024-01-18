@@ -65,3 +65,9 @@ export interface MovieDetails {
   vote_average: number;
   vote_count: number;
 }
+
+export interface MovieProps {
+  title: string;
+  fetchUrL: string;
+  isLargeRow: boolean;
+}
