@@ -96,3 +96,4 @@ export interface MovieDetailPrpos {
   detailData: MovieDetails | TV | Partial<TV>;
   setOnModal: Dispatch<SetStateAction<boolean>>;
 }
+

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import axios from "../api/baseApi";
-import requests from "../api/requests";
+import axios from "../../../api/baseApi";
+import requests from "../../../api/requests";
 import tw from "twin.macro";
-import { MovieDetails } from "../../types/movies";
+import { MovieDetails } from "../../../../types/movies";
 import styled from "styled-components";
 
 export default function Banner() {

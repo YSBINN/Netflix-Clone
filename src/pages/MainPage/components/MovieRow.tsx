@@ -1,16 +1,16 @@
-import { MovieDetails, MovieProps, TV } from "../../types/movies";
-import { useFetch } from "../hooks/useFetch";
+import { MovieDetails, MovieProps, TV } from "../../../../types/movies";
+import { useFetch } from "../../../hooks/useFetch";
 import tw from "twin.macro";
 import styled from "styled-components";
 import { MouseEvent, useRef, useState } from "react";
-import MovieDetail from "./MovieDetail";
+import MovieDetail from "./RowModal";
 
 export default function MovieRow({ title, fetchUrL, isLargeRow }: MovieProps) {
   //상태값
   const [onModal, setOnModal] = useState(false);
-  const [detailData, setDetailData] = useState<
-    TV | MovieDetails | Partial<TV>
-  >({});
+  const [detailData, setDetailData] = useState<TV | MovieDetails | Partial<TV>>(
+    {}
+  );
   //Dom
   const postersRef = useRef<HTMLDivElement>(null);
   //custom hook

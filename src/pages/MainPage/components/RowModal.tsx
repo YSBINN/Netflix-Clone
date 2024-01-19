@@ -1,9 +1,6 @@
-import { MovieDetailPrpos } from "../../../types/movies";
+import { MovieDetailPrpos } from "../../../../types/movies";
 import tw from "twin.macro";
-export default function MovieDetail({
-  detailData,
-  setOnModal,
-}: MovieDetailPrpos) {
+export default function RowModal({ detailData, setOnModal }: MovieDetailPrpos) {
   const { backdrop_path, title, name, vote_average, overview } = detailData;
   return (
     <Container>
