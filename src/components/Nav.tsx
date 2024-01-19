@@ -38,6 +38,7 @@ const NetflixNav = styled.nav<{ $show: boolean }>(
   w-full
   h-[150px]
   z-1
+  p-[20px]
   flex
   justify-between
   items-center

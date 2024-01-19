@@ -1,14 +1,26 @@
-import { MovieProps } from "../../types/movies";
+import { MovieDetails, MovieProps, TV } from "../../types/movies";
 import { useFetch } from "../hooks/useFetch";
 import tw from "twin.macro";
 import styled from "styled-components";
-import { MouseEvent, useRef } from "react";
+import { MouseEvent, useRef, useState } from "react";
+import MovieDetail from "./MovieDetail";
 
 export default function MovieRow({ title, fetchUrL, isLargeRow }: MovieProps) {
-  const { data }: any = useFetch(fetchUrL);
+  //상태값
+  const [onModal, setOnModal] = useState(false);
+  const [detailData, setDetailData] = useState<
+    TV | MovieDetails | Partial<TV>
+  >({});
+  //Dom
   const postersRef = useRef<HTMLDivElement>(null);
+  //custom hook
+  const { data } = useFetch(fetchUrL);
 
-  
+  const handleClick = (movie: any) => {
+    setOnModal(true);
+    setDetailData(movie);
+  };
+
   const handleScoll = (
     e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>
   ) => {
@@ -22,7 +34,7 @@ export default function MovieRow({ title, fetchUrL, isLargeRow }: MovieProps) {
       }
     }
   };
-
+  if (!data) return <></>;
   return (
     <RowSection>
       <RowTitle>{title}</RowTitle>
@@ -36,14 +48,15 @@ export default function MovieRow({ title, fetchUrL, isLargeRow }: MovieProps) {
           <Arrow>{"<"}</Arrow>
         </SliderArrowLeft>
         <Posters ref={postersRef}>
-          {data?.map((movie: any) => (
+          {data?.map(movie => (
             <Poster
               key={movie.id}
               src={`https://image.tmdb.org/t/p/original${
                 isLargeRow ? movie.poster_path : movie.backdrop_path
               }`}
-              alt={movie.name}
+              alt={movie.title || movie.name}
               $isLargeRow={isLargeRow}
+              onClick={() => handleClick(movie)}
             />
           ))}
         </Posters>
@@ -51,6 +64,9 @@ export default function MovieRow({ title, fetchUrL, isLargeRow }: MovieProps) {
           <Arrow>{">"}</Arrow>
         </SliderArrowRight>
       </Slider>
+      {onModal && (
+        <MovieDetail detailData={detailData} setOnModal={setOnModal} />
+      )}
     </RowSection>
   );
 }

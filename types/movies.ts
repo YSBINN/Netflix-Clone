@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface ProductionCountry {
   iso_3166_1: string;
   name: string;
@@ -64,10 +66,33 @@ export interface MovieDetails {
   videos: Videos;
   vote_average: number;
   vote_count: number;
+  name?: string;
 }
 
 export interface MovieProps {
   title: string;
   fetchUrL: string;
   isLargeRow: boolean;
+}
+
+export interface TV {
+  id: number;
+  name: string;
+  first_air_date: string;
+  backdrop_path: string;
+  genre_ids: number[];
+  origin_country: string[];
+  original_language: string;
+  original_name: string;
+  overview: string;
+  poster_path: string;
+  popularity: number;
+  vote_count: number;
+  vote_average: number;
+  title?: string;
+}
+
+export interface MovieDetailPrpos {
+  detailData: MovieDetails | TV | Partial<TV>;
+  setOnModal: Dispatch<SetStateAction<boolean>>;
 }

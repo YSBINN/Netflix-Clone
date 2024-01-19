@@ -2,6 +2,7 @@ import Nav from "./components/Nav";
 import Banner from "./components/Banner";
 import MovieRow from "./components/MovieRow";
 import requests from "./api/requests";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         fetchUrL={requests.fetchComedyMovies}
         isLargeRow={false}
       />
+      <Footer />
     </>
   );
 }
