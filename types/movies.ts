@@ -67,6 +67,7 @@ export interface MovieDetails {
   vote_average: number;
   vote_count: number;
   name?: string;
+  media_type?: string;
 }
 
 export interface MovieProps {
@@ -92,8 +93,7 @@ export interface TV {
   title?: string;
 }
 
-export interface MovieDetailPrpos {
-  detailData: MovieDetails | TV | Partial<TV>;
+export interface ModalProps {
+  modalData: MovieDetails | TV | Partial<TV>;
   setOnModal: Dispatch<SetStateAction<boolean>>;
 }
-

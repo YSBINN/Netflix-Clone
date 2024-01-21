@@ -1,7 +1,7 @@
-import { MovieDetailPrpos } from "../../../../types/movies";
+import { ModalProps} from "../../../../types/movies";
 import tw from "twin.macro";
-export default function RowModal({ detailData, setOnModal }: MovieDetailPrpos) {
-  const { backdrop_path, title, name, vote_average, overview } = detailData;
+export default function RowModal({ modalData, setOnModal }: ModalProps) {
+  const { backdrop_path, title, name, vote_average, overview } = modalData;
   return (
     <Container>
       <ModalWrapper>

@@ -8,7 +8,7 @@ import MovieDetail from "./RowModal";
 export default function MovieRow({ title, fetchUrL, isLargeRow }: MovieProps) {
   //상태값
   const [onModal, setOnModal] = useState(false);
-  const [detailData, setDetailData] = useState<TV | MovieDetails | Partial<TV>>(
+  const [modalData, setmodalData] = useState<TV | MovieDetails | Partial<TV>>(
     {}
   );
   //Dom
@@ -18,7 +18,7 @@ export default function MovieRow({ title, fetchUrL, isLargeRow }: MovieProps) {
 
   const handleClick = (movie: any) => {
     setOnModal(true);
-    setDetailData(movie);
+    setmodalData(movie);
   };
 
   const handleScoll = (
@@ -64,9 +64,7 @@ export default function MovieRow({ title, fetchUrL, isLargeRow }: MovieProps) {
           <Arrow>{">"}</Arrow>
         </SliderArrowRight>
       </Slider>
-      {onModal && (
-        <MovieDetail detailData={detailData} setOnModal={setOnModal} />
-      )}
+      {onModal && <MovieDetail modalData={modalData} setOnModal={setOnModal} />}
     </RowSection>
   );
 }

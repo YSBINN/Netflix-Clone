@@ -1,9 +1,17 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import tw from "twin.macro";
 
 export default function Nav() {
   const [show, setShow] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+  const navigate = useNavigate();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+    navigate(`/search?q=${searchValue}`);
+  };
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -24,7 +32,13 @@ export default function Nav() {
         <NetflixLogo
           alt="Netflix logo"
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Netflix_2014_logo.svg/300px-Netflix_2014_logo.svg.png?20140810085105"
-          onClick={() => window.location.reload()}
+          onClick={() => navigate("/")}
+        />
+        <SearchBar
+          value={searchValue}
+          onChange={handleChange}
+          type="text"
+          placeholder="영화를 검색해주세요 "
         />
       </NetflixNav>
     </>
@@ -37,7 +51,7 @@ const NetflixNav = styled.nav<{ $show: boolean }>(
   top-0
   w-full
   h-[150px]
-  z-1
+  z-[200]
   p-[20px]
   flex
   justify-between
@@ -52,3 +66,13 @@ left-40
 w-[200px]
 h-[50px]
 object-fill`;
+
+const SearchBar = tw.input`
+fixed
+left-[43%]
+bg-[#000000c7]
+rounded-[5px]
+text-white
+p-[5px]
+border-none
+`;
