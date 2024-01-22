@@ -1,46 +1,107 @@
-# Getting Started with Create React App
+# 넷플릭스
+## 📌 프로젝트 소개
+### TMDB API를 이용한 넷플릭스 모방 토이 프로젝트 
+## 📌 배포
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[https://ysbinn.github.io/Netflix-Clone/](https://ysbinn.github.io/Netflix-Clone/)
 
-## Available Scripts
+## 📌 프로젝트 설치 및 시작
 
-In the project directory, you can run:
+#### 프로젝트 클론
 
-### `yarn start`
+```shell
+$ git clone https://github.com/YSBINN/Netflix-Clone.git
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### 패키지 설치
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```shell
+$ yarn or yarn install
+```
 
-### `yarn test`
+#### 서버 실행
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```shell
+$ yarn start
+```
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📌 프로젝트 구조
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<details>
+<summary>open</summary>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+📦src  
+ ┣ 📂api  
+ ┃ ┣ 📜baseApi.ts  
+ ┃ ┗ 📜requests.ts  
+ ┣ 📂hooks  
+ ┃ ┣ 📜useDebounce.ts  
+ ┃ ┣ 📜useFetch.ts  
+ ┃ ┗ 📜useOnClickOutside.ts  
+ ┣ 📂pages  
+ ┃ ┣ 📂DetailPage  
+ ┃ ┃ ┗ 📜index.tsx  
+ ┃ ┣ 📂Layout  
+ ┃ ┃ ┣ 📂components  
+ ┃ ┃ ┃ ┣ 📜Footer.tsx  
+ ┃ ┃ ┃ ┗ 📜Nav.tsx  
+ ┃ ┃ ┗ 📜index.tsx  
+ ┃ ┣ 📂MainPage  
+ ┃ ┃ ┣ 📂components  
+ ┃ ┃ ┃ ┣ 📜Banner.tsx  
+ ┃ ┃ ┃ ┣ 📜MovieRow.tsx  
+ ┃ ┃ ┃ ┗ 📜RowModal.tsx  
+ ┃ ┃ ┗ 📜index.tsx  
+ ┃ ┗ 📂SearchPage  
+ ┃ ┃ ┣ 📂components  
+ ┃ ┃ ┃ ┣ 📜EmptyResults.tsx  
+ ┃ ┃ ┃ ┗ 📜Results.tsx  
+ ┃ ┃ ┗ 📜index.tsx  
+ ┣ 📂styles  
+ ┃ ┗ 📜GlobalStyles.tsx  
+ ┣ 📜App.tsx  
+ ┗ 📜index.tsx
 
-### `yarn eject`
+</details>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<br/>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📌기술 스택 및 사용이유
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### React 
+- 컴포넌트화를 통해 추후 유지보수와 재사용성을 고려했습니다.
+-   유저 배너, 상단과 하단 배너 등 중복되어 사용되는 부분이 많아 컴포넌트화를 통해 리소스 절약이 가능했습니다.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+####  Typescript 
+- 안정성 ( 컴파일 과정에서 에러를 예방 할 수 있을뿐 아니라, 손시운 디버깅이 가능하다. )
+- 표현력 ( 타입을 명시함으로써 코드를 더 이해하기 쉽게 만들어 준다. 또한 코드 자동 완성 기능을 지원하여 생산성을 높여준다. )
+- 확장성 (ES6 모듈 및 네임스페이스를 지원하므로 확장성이 높은 애플리케이션을 개발할 수 있다. )
 
-## Learn More
+#### twin.macro ( Styled-component + Tailwind-CSS )  : https://github.com/ben-rogerson/twin.macro
+-   TailwindCSS를 단독으로 사용 할 경우 태그 내에 작성되는 className이 많아져 가독성 저해   
+-   유지보수 시 해당 태그를 코드 내에서 식별하여 className을 수정해주어야하는 번거로움 발생
+-   동일 컴포넌트를 중복하여 사용 할 경우에 대한 편의성 도모
+-   Styled Components의 in-JS 문법을 활용하여 동적인 스타일 적용 가능
+-   코드의 가독성 및 유지보수성 향상
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 📌 구현기능 
+✔️ 메인 페이지
+   1. Layout (Nav Footer 및 검색 바 구현)
+- 로고 클릭 시 메인 페이지로 이동 및 검색 바 검색 시 검색 페이지 이동
+    
+2. Banner (메인배너 기능 구현)
+ - TMDB API를 사용해서 데이터를 받아 영화 포스터 및 관련 정보 UI구현
+- Play 버튼 클릭 시 예고편 재생 변환
+          
+3. Movie Row (영화 목록을 보여줄 수 있는 UI 기능 구현)
+ - TMDB API를 사용해서  여러 영화 목록을 보여주는 UI구현
+- 포스터 클릭시 관련 정보를 볼수 있는 모달 기능 구현
+ - 영화 목록 슬라이더 기능 구현
+		   
+✔️ 검색 페이지 (검색 된 영화 목록을 보여줄 수 있는 UI 기능 구현)
+- TMDB API를 사용해서  검색된 영화 목록을 보여주는 UI구현
+- 검색된 영화 목록 클릭 시 상세 페이지로 이동
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+✔️ 상세 페이지 (검색 된 영화 목록의 상세 정보를 볼 수 있는 UI 기능 구현)
+- 페이지 이동되는 기능만을 구현하여 다른 UI는 구현하지 않았습니다.
