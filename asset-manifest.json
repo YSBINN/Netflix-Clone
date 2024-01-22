@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/https//YSBINN.github.io/Netflix-Clone/static/js/main.23b1e772.js",
-    "index.html": "/https//YSBINN.github.io/Netflix-Clone/index.html",
-    "main.23b1e772.js.map": "/https//YSBINN.github.io/Netflix-Clone/static/js/main.23b1e772.js.map"
+    "main.js": "/Netflix-Clone/static/js/main.21cebec5.js",
+    "index.html": "/Netflix-Clone/index.html",
+    "main.21cebec5.js.map": "/Netflix-Clone/static/js/main.21cebec5.js.map"
   },
   "entrypoints": [
-    "static/js/main.23b1e772.js"
+    "static/js/main.21cebec5.js"
   ]
 }
